@@ -103,6 +103,10 @@ mở file dulieu.sql của bước 14, chạy toàn bộ các lệnh này
 <img width="1920" height="1080" alt="ktra 2" src="https://github.com/user-attachments/assets/a3bb59e3-9be8-460e-b26f-aaa2f0346fa7" />
 Kiểm Tra 
 
+17.Upload file dulieu.sql lên github repository của em (repository mà em đang edit file README.md)
+<img width="1920" height="1076" alt="image" src="https://github.com/user-attachments/assets/594f27e5-d701-4be8-8b6d-6317055217bc" />
+
+
 
 
 
