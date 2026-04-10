@@ -1,3 +1,8 @@
+# SQL SERVER
+
+## Họ & tên: Nguyễn Đăng Thịnh
+## Lớp: K59KMT.K01  
+## MSSV: K235480106069
 1.Download và cài đặt SQL Server 2025, phiên bản Developer
 (Do em cài quên chụp lên em mở lại demo để chụp ạ)
 <img width="1920" height="1080" alt="tải sql" src="https://github.com/user-attachments/assets/f4bf348e-9b32-4911-aec4-f42f547369ba" />
