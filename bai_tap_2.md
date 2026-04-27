@@ -34,6 +34,7 @@ Trong đó:
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/d1fc1856-174c-4a4f-b0ac-50853f9beac8" />
 Ảnh này cho thấy tôi đã thêm dữ liệu mẫu vào các bảng KhachHang, SanPham, HoaDon. 
 Dữ liệu này sẽ được sử dụng để kiểm tra các Function, Store Procedure và Trigger ở các phần sau.
+
 # PHẦN 3: FUNCTION
 <img width="1920" height="1077" alt="image" src="https://github.com/user-attachments/assets/fe44aced-6003-4902-a0aa-b04a1fe86830" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5e0934e6-9af6-402e-b261-cd737fcef59b" />
@@ -50,6 +51,7 @@ Hàm sử dụng phép JOIN giữa bảng HoaDon và SanPham để hiển thị 
 Hàm fn_TongTienTheoKhach là Multi-statement Table-Valued Function dùng để tính tổng tiền của tất cả hóa đơn theo từng khách hàng.
 Hàm sử dụng biến bảng @ketQua để lưu kết quả, có khai báo biến @tong để tính tổng tiền thông qua phép SUM giữa giá sản phẩm và số lượng.
 Khác với Inline Function, hàm này có nhiều bước xử lý logic trong khối BEGIN...END.
+
 # PHẦN 4: STORED PROCEDURE
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/503fc661-74ba-4275-8807-87a264bcea84" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6cd40d7e-3697-4b60-b1d9-1cfc0e2e4e62" />
@@ -65,6 +67,7 @@ Procedure sử dụng tham số OUTPUT để trả về giá trị tổng tiền
 <img width="1916" height="1080" alt="image" src="https://github.com/user-attachments/assets/355d541a-1247-4f02-bc90-067751a85820" />
 Store Procedure sp_DanhSachHoaDon được xây dựng để trả về danh sách hóa đơn.
 Procedure sử dụng JOIN giữa các bảng HoaDon, KhachHang và SanPham để hiển thị đầy đủ thông tin gồm tên khách hàng, tên sản phẩm và giá.
+
 # PHẦN 5: TRIGGER
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8d8e30eb-e5ce-4880-a864-3eb84d0b3378" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c0d4eba3-a72e-47b5-a4c0-27352c8ab80a" />
