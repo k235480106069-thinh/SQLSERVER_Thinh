@@ -68,63 +68,121 @@ Nếu vẫn tìm được cách dùng SQL để giải quyết vấn đề mà k
 - Áp dụng các ràng buộc khóa chính, khóa ngoại
 - Sử dụng JOIN để xử lý dữ liệu giữa các bảng
 - Kiểm tra kết quả bằng SELECT và EXEC
+- 
 # PHẦN 1: DATABASE + TABLE
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/32fae88e-2cdb-4a5f-9c83-9e17bcb4f1fd" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/eca51c0c-729f-479f-bb1c-fcb647fb5440" />
-Ảnh này cho thấy tôi đã tạo thành công database QuanLyBanHang_K23548010069 và chuyển sang sử dụng database này để thực hiện các bước tiếp theo.
+Trong 2 ảnh này, em đã thực hiện tạo database mới với tên là QuanLyBanHang_K23548010069 theo đúng yêu cầu đề bài (có kèm mã sinh viên).
+Sau khi tạo xong, em sử dụng lệnh USE để chuyển sang database này nhằm thực hiện các bước tiếp theo.
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/45d20676-5dc3-46ed-a74c-67216ed06377" />
-Ảnh này cho thấy tôi đã tạo thành công 3 bảng KhachHang, SanPham, HoaDon với các kiểu dữ liệu phù hợp.
-- Các khóa chính (PK): maKhachHang, maSanPham, maHoaDon
-- Các khóa ngoại (FK): maKhachHang và maSanPham trong bảng HoaDon
-- Sử dụng NVARCHAR để hỗ trợ Unicode (tiếng Việt)
-- Sử dụng CHECK để đảm bảo dữ liệu hợp lệ (giá > 0, số lượng >= 0)
+Ảnh này thể hiện việc em đã tạo thành công 3 bảng gồm: KhachHang, SanPham, HoaDon.
+
+Các bảng có liên kết với nhau thông qua khóa:
+Khóa chính (PK): maKhachHang, maSanPham, maHoaDon
+Khóa ngoại (FK): maKhachHang, maSanPham trong bảng HoaDon
+Ngoài ra:
+Sử dụng kiểu dữ liệu NVARCHAR để hỗ trợ tiếng Việt
+Có dùng ràng buộc CHECK để đảm bảo dữ liệu hợp lệ (giá > 0, số lượng >= 0)
 
 # PHẦN 2: INSERT DATA
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/976f003c-652a-44c5-bf3d-656b4f066c04" />
+Ở phần này, em đã sử dụng lệnh INSERT INTO để thêm dữ liệu mẫu vào các bảng:
+
+KhachHang
+SanPham
+HoaDon
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/882aa4d0-783a-4835-a460-cc817f5ebbff" />
-Ảnh trên cho thấy tôi đã thêm dữ liệu mẫu vào các bảng KhachHang, SanPham, HoaDon. 
-Kết quả SELECT cho thấy dữ liệu đã được lưu thành công và các bảng liên kết đúng với nhau thông qua khóa ngoại.
-Dữ liệu này sẽ được sử dụng để kiểm tra các Function, Store Procedure và Trigger ở các phần tiếp theo.
+Sau khi thêm dữ liệu, em dùng lệnh SELECT để kiểm tra.
+
+Kết quả cho thấy:
+
+Dữ liệu đã được thêm thành công
+Các bảng liên kết đúng với nhau thông qua khóa ngoại
+
+👉 Dữ liệu này dùng để test cho các phần Function, Procedure và Trigger phía sau.
 
 # PHẦN 3: FUNCTION
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/07b4d7ea-9af1-4161-a88a-227097653e4a" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/14a9eb4f-6fc6-49e7-983d-da99cd566381" />
-Hàm fn_TinhTongTienHoaDon được xây dựng để tính tổng tiền của một hóa đơn dựa trên giá sản phẩm và số lượng mua.
-Hàm sử dụng phép JOIN giữa bảng HoaDon và SanPham để lấy giá sản phẩm, sau đó nhân với số lượng để tính tổng tiền.
-Kết quả trả về là một giá trị kiểu MONEY.
+Em xây dựng hàm fn_TinhTongTienHoaDon để tính tổng tiền của một hóa đơn.
+
+Cách hoạt động:
+Lấy giá sản phẩm từ bảng SanPham
+Nhân với số lượng trong bảng HoaDon
+Có sử dụng JOIN giữa 2 bảng
+Hàm trả về một giá trị kiểu MONEY
+
+👉 Giúp tính toán nhanh mà không cần viết lại nhiều lần.
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/80da3870-2553-4729-8635-1181a20e4469" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/dcfacc10-b387-49df-9562-38a9993537e1" />
-Hàm fn_DanhSachHoaDonTheoKhach là Inline Table-Valued Function dùng để trả về danh sách các hóa đơn của một khách hàng cụ thể.
-Hàm sử dụng phép JOIN giữa bảng HoaDon và SanPham để hiển thị đầy đủ thông tin hóa đơn cùng với tên sản phẩm và giá.
+Hàm fn_DanhSachHoaDonTheoKhach dùng để lấy danh sách hóa đơn của một khách hàng.
+
+Hàm trả về một bảng dữ liệu
+Có JOIN giữa HoaDon và SanPham
+Hiển thị được:
+Tên sản phẩm
+Giá
+Số lượng
+
+👉 Dùng khi cần truy vấn dữ liệu theo điều kiện.
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/764ba675-a73c-4abf-afc9-e35a3d8eea74" />
 <img width="1920" height="1079" alt="image" src="https://github.com/user-attachments/assets/c5acbb3a-30cb-4e3a-837f-ff222ad626a4" />
-Hàm fn_TongTienTheoKhach là Multi-statement Table-Valued Function dùng để tính tổng tiền của tất cả hóa đơn theo từng khách hàng.
-Hàm sử dụng biến bảng @ketQua để lưu kết quả, có khai báo biến @tong để tính tổng tiền thông qua phép SUM giữa giá sản phẩm và số lượng.
-Khác với Inline Function, hàm này có nhiều bước xử lý logic trong khối BEGIN...END.
+Hàm fn_TongTienTheoKhach dùng để tính tổng tiền theo từng khách hàng.
+
+Có sử dụng:
+Biến bảng @ketQua
+Biến trung gian để tính toán
+Xử lý nhiều bước trong BEGIN...END
+
+👉 Phù hợp với các bài toán phức tạp hơn so với Inline Function.
 
 # PHẦN 4: STORED PROCEDURE
 <img width="1917" height="1077" alt="image" src="https://github.com/user-attachments/assets/f54a2b3b-aa8f-4479-8445-b2e861fa1b13" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1ee15a92-6666-44e1-acf1-ef1554f5f052" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1dd27daa-82eb-4c0b-a6b4-f3aa51ae6b05" />
-Store Procedure sp_ThemSanPham được xây dựng để thêm sản phẩm mới vào bảng SanPham.
-Procedure có kiểm tra điều kiện logic: nếu giá sản phẩm nhỏ hơn hoặc bằng 0 thì không cho phép thêm và hiển thị thông báo lỗi.
-Khi giá hợp lệ, dữ liệu sẽ được thêm vào bảng SanPham.
+Procedure sp_ThemSanPham dùng để thêm sản phẩm mới.
+
+Có kiểm tra điều kiện:
+Nếu giá ≤ 0 thì báo lỗi
+Nếu hợp lệ thì mới thêm vào database
+
+👉 Giúp tránh dữ liệu sai ngay từ đầu.
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/cb5a18e4-6eed-4d29-8bd0-8027cfcf5aae" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f32225ae-f000-4e7b-95ab-26bd45bbcaa1" />
-Store Procedure sp_TongTienKhachHang được sử dụng để tính tổng tiền của một khách hàng.
-Procedure sử dụng tham số OUTPUT để trả về giá trị tổng tiền sau khi tính toán từ bảng HoaDon và SanPham.
+Procedure sp_TongTienKhachHang dùng để tính tổng tiền của một khách hàng.
+
+Có sử dụng tham số OUTPUT
+Trả về tổng tiền sau khi tính toán
+
+👉 Giúp tái sử dụng logic dễ dàng.
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c7c5d327-e902-45fc-ab12-d8bfda3da8fc" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ef007f50-0329-47a5-969a-d60945f89116" />
-Store Procedure sp_DanhSachHoaDon được xây dựng để trả về danh sách hóa đơn.
-Procedure sử dụng JOIN giữa các bảng HoaDon, KhachHang và SanPham để hiển thị đầy đủ thông tin gồm tên khách hàng, tên sản phẩm và giá.
+Procedure sp_DanhSachHoaDon dùng để hiển thị danh sách hóa đơn.
+
+Có JOIN 3 bảng:
+HoaDon
+KhachHang
+SanPham
+Hiển thị đầy đủ thông tin:
+Tên khách hàng
+Tên sản phẩm
+Giá
 
 # PHẦN 5: TRIGGER
 <img width="1914" height="1076" alt="image" src="https://github.com/user-attachments/assets/d7392126-6821-467f-8c26-8a72f2113709" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/188c03b3-04d3-43b8-adad-8744bcc720bb" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0ad2fce5-1bcd-48ba-9a84-09929815a276" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/343196f0-d4ef-4516-93f2-62b16ca8a29c" />
-Trigger trg_GiamSoLuongTon được tạo để tự động giảm số lượng tồn của sản phẩm khi có hóa đơn mới được thêm vào.
-Khi thực hiện INSERT vào bảng HoaDon, trigger sẽ kích hoạt và cập nhật lại số lượng tồn trong bảng SanPham tương ứng.
+Trigger trg_GiamSoLuongTon được tạo để tự động cập nhật số lượng tồn kho.
 
+Khi thêm hóa đơn (INSERT vào HoaDon):
+→ Trigger sẽ chạy
+→ Giảm số lượng trong bảng SanPham
+
+Công thức:
+
+số lượng tồn = số lượng tồn - số lượng mua
+
+👉 Giúp hệ thống tự động cập nhật, không cần làm thủ công.
 
 
